@@ -1,0 +1,34 @@
+def mergeIntervals(arr): 
+  # ordenar basado en el orden de incremento  
+  # de los intervalos de inicio 
+  arr.sort(key = lambda x: x[0])  
+          
+  # arreglo para guardar los intervalos combinados 
+  m = [] 
+  s = -10000
+  max = -100000
+  for i in range(len(arr)): 
+    a = arr[i] 
+    if a[0] > max: 
+      if i != 0: 
+        m.append([s,max]) 
+      max = a[1] 
+      s = a[0] 
+    else: 
+      if a[1] >= max: 
+        max = a[1] 
+  
+  if max != -100000 and [s, max] not in m: 
+    m.append([s, max]) 
+  print("Los intervalos combinados son: ", end = "") 
+  for i in range(len(m)): 
+    print(m[i], end = "")         
+
+"""valor 'max' da el último punto de  
+ese intercalo particular 
+'s' da el punto inicial de ese intervalo 
+arreglo 'm' contiene la lista de todos los intervalos combinados """
+
+# Driver code 
+arr = [[1, 4], [2, 5], [7, 9]] 
+mergeIntervals(arr) 
